@@ -1,0 +1,57 @@
+ /* ============================================= */
+ /* Default Color */
+ /* ============================================= */
+
+$color-black: #222222;
+$color-navy: #36486b;
+$color-purple: #6645dd;
+$color-puple-lighter: #7477BF;
+$color-cyan: #076b70;
+$color-cyan-lighter: #007c7c;
+$color-cyan-lightest: #4da2bb;
+$color-red: #ee3322;
+$color-red-lighter: #e4757a;
+$color-red-lightest: #ec9fa3;
+$color-orange: #f47f16;
+$color-orange-lighter: #f7ad19;
+$color-red-orange: #fd7856;
+$color-red-orange-lighter: #fd9f85;
+$color-gray: #666666;
+$color-gray-lighter: #757575;
+
+$color-white-gray: #E6E0E0;
+$color-blue: #0f65ef;
+$color-skyblue: #b7d7e8;
+$color-green: #68af15;
+$color-pink:#e40c78;
+$color-green-cyan: #80e8d1;
+
+// Extra color
+
+$color-primary: #58e1c1;
+$color-info: #927bc1;
+$color-success: #63cc82;
+$col-1: #deb2ee;
+$col-2: #7ee6fd;
+$col-3: #88d9a0;
+$col-4: #4da2bb;
+$col-5: #51ddfc;
+
+// Social color
+
+$linkedin-color: #0077b5;
+$google-color: #dd4b39;
+$github-color: #24292E;
+
+
+
+
+ /* ============================================= */
+ /* Media Query Points */
+ /* ============================================= */
+
+$breakpoints: (
+    'sm': 576px,
+    'med': 768px,
+    'lg': 1024px,
+);

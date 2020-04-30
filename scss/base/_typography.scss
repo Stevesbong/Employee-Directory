@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: url(/img/backgroundimg2.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+}
+
+body {
+    font-family: 'Merriweather', Arial, sans-serif;
+    color: $main-color;
+    min-height: 100vh;
+    max-width: 1800px;
+    display: flex;
+    flex-direction: column;
+}
+
+// hr line default
+
+hr.line {
+    margin-bottom: 50px;
+    border: 0;
+    height: 1px;
+    background-image: 
+    linear-gradient(to right,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0));
+}
