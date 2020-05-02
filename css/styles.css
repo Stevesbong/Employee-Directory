@@ -378,20 +378,24 @@ body {
 
 #employee-main {
   display: grid;
-  width: 90%;
+  width: 95%;
   margin: 1.2em auto;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-template-rows: minmax(180px, 1fr);
   grid-gap: 1.2em;
 }
 
 .card {
   display: grid;
   grid-template-columns: 150px 1fr;
+  align-items: center;
+  justify-items: center;
   border: 2px solid #d1d1d1;
 }
 
 .avatar {
   border-radius: 50%;
+  text-align: center;
 }
 
 hr.line {
