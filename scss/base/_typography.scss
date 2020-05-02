@@ -5,12 +5,13 @@
 html {
     background: url(/img/backgroundimg2.jpg) no-repeat center center fixed;
     background-size: cover;
+    background-color: $color-white-gray;
     height: 100%;
 }
 
 body {
     font-family: 'Merriweather', Arial, sans-serif;
-    color: $main-color;
+    color: $color-black;
     min-height: 100vh;
     max-width: 1800px;
     display: flex;
