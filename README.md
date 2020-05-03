@@ -1,4 +1,4 @@
-# [Employee Directory] (https://stevesbong.github.io/Employee-Directory)
+# [Employee Directory](https://stevesbong.github.io/Employee-Directory)
 
 
 Website preview: 
