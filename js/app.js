@@ -5,7 +5,6 @@ const container = document.getElementById("container");
 // GENERATE RANDOM EMPLOYEES
 const url = 'https://randomuser.me/api/?results=12'
 
-let data = [];
 // Modal Div
 const modalDiv = document.createElement('div');
 const modalCardDiv = document.createElement('div');
@@ -31,7 +30,7 @@ fetcingData('https://randomuser.me/api/?results=12')
 function disPlayEmployees(json) {
 
     // LOOP THROUGH EACH EMPLOYEE FROM JSON DATA
-    data = json.results.map( employee => {
+    const data = json.results.map( employee => {
 
         // CREATE EACH SECTION FOR EACH EMPLOYEE
         const section = document.createElement("section");
@@ -57,27 +56,26 @@ function disPlayEmployees(json) {
 
 
 // CREATE FUNCTION FOR A MODAL INFOMATION
-function modalCard(i) {
-    console.log(data[i])
-    const birthday = new Date(Date.parse(data[i].dob.date)).toLocaleDateString()  
+function modalCard(employees) {
+    console.log(employees)
+    const birthday = new Date(Date.parse(employees.dob.date)).toLocaleDateString()  
 
     modalCardDiv.className = "modal-card";
     modalCardDiv.innerHTML = `
         <p class="close">&times;</p>
-
-            <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
-
-
-            <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
-
+        <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
+        <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
         <div class ="info">
-            <img src="${data[i].picture.large}" >
-            <h3>${data[i].name.first} ${data[i].name.last}</h3>
-            <p>${data[i].email}</p>
-            <p>${data[i].location.city}</p>
+            <img class="avatar" src="${employees.picture.large}" >
+            <h3>${employees.name.first} ${employees.name.last}</h3>
+            <p>${employees.email}</p>
+            <p>${employees.location.city}</p>
             <hr class="line">
-            <p>${data[i].cell}</p>
-            <p>${data[i].location.street.number} ${data[i].location.street.name} ${data[i].nat} ${data[i].location.postcode}</p>
+            <p>${employees.cell}</p>
+            <p>${employees.location.street.number} 
+                ${employees.location.street.name} 
+                ${employees.nat} 
+                ${employees.location.postcode}</p>
             <p>Birthday: ${birthday}</p>
         </div>
     `
@@ -95,7 +93,7 @@ function displayCardsToModal(data) {
     const cards = gridBox.querySelectorAll(".card");
     cards.forEach( (element, i) => {
         element.addEventListener('click', () => {
-            modalCard(i)
+            modalCard(data[i])
         });
     });
 }
@@ -110,16 +108,18 @@ modalDiv.addEventListener('click', event => {
     }
 })
 
-modalCardDiv.addEventListener('click', e => {
-    let index = 0;
-    if(e.target.className === "back") {
-        if (index !== 0) {
-            console.log('hi')
-            modalCard(index--)
+
+// Working on Exceeds Expectations
+function nextOrBackModal(i) {
+    modalCardDiv.addEventListener('click', (e) => {
+        console.log(e.target)
+
+        if(e.target.className === "back") {
+            console.log('back clicked')
+            modalCard(data)
+        } else if(e.target.className === "forward") {
+            console.log('forward clicked')
+            modalCard(data)
         }
-    } else if(e.target.className === "forward") {
-        if (index !== 12){
-            modalCard(index++)
-        }
-    }
-})
+    })
+}
