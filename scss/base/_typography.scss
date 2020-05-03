@@ -5,7 +5,7 @@
 html {
     // background: url(/img/backgroundimg2.jpg) no-repeat center center fixed;
     background-size: cover;
-    background-color: $color-white-gray;
+    background-color: #fff;
     height: 100%;
 }
 
@@ -17,22 +17,37 @@ body {
     display: flex;
     flex-direction: column;
 }
+h2 {
+    margin: 1.4em 1.4em 1.4em 1.8em;
+    font-size: 1.2em;
+}
 
 #employee-main {
     display: grid;
-    width: 95%;
+    width: 85%;
     margin: 1.2em auto;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    grid-template-rows: minmax(180px, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: minmax(180px, 1fr);
     grid-gap: 1.2em;
 }
+// display: grid;
+// width: 95%;
+// margin: 1.2em auto;
+// grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+// grid-template-rows: minmax(180px, 1fr);
+// grid-gap: 1.2em;
 
 .card {
     display: grid;
     grid-template-columns: 150px 1fr;
     align-items: center;
     justify-items: center;
-    border: 2px solid $color-gray-lightest;
+    border: 2px solid $color-gray-lighter;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: $color-gray-lightest;
+    }
 }
 
 
@@ -48,10 +63,56 @@ body {
 //   margin: 2em auto;
 //   grid-gap: 15px;
 
+.modalOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: #fff;
+    text-align: center;
+    border: 2px solid $color-gray-lighter;
+    border-radius: 10px;
+    color: $color-gray;
+
+    & .close {
+        cursor: pointer;
+    }
+
+    & h3 {
+        color: $color-black;
+    }
+
+    & p:first-child {
+        text-align: right;
+        margin-right: 1.2em;
+    }
+
+    & img {
+        border-radius: 50%;
+    }
+}
+
+
+
+
+
+
+
+
 // hr line default
 
 hr.line {
-    margin-bottom: 50px;
+    margin: 25px 0;
     border: 0;
     height: 1px;
     background-image: 
