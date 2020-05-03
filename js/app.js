@@ -1,12 +1,14 @@
-
-console.log('app working')
 // GET GRID CONTAINER
 const gridBox = document.getElementById("employee-main");
-const container = document.getElementById("container")
+const container = document.getElementById("container");
+
 // GENERATE RANDOM EMPLOYEES
 const url = 'https://randomuser.me/api/?results=12'
 
+let data = [];
+// Modal Div
 const modalDiv = document.createElement('div');
+const modalCardDiv = document.createElement('div');
 
 // FETCHING DATA FROM GENERATE RANDOM EMPLOYEES WEBSITE
 // USING ASYNC / AWAIT AND FETCH() METHODS TO GET DATA
@@ -20,69 +22,104 @@ async function fetcingData(url) {
 }
 
 
+// DISPLAY 12 EMPLOYEES TO THE WEBSITE
+fetcingData('https://randomuser.me/api/?results=12')
+.then( disPlayEmployees );
+
+
 // FUNCTION FOR DISPLAY ALL 12 EMPLOYEES TO THE WEBSITE
 function disPlayEmployees(json) {
+
     // LOOP THROUGH EACH EMPLOYEE FROM JSON DATA
-    const data = json.results.map( employee => {
-        // all employee to console.log
-        // console.log(employee)
+    data = json.results.map( employee => {
 
         // CREATE EACH SECTION FOR EACH EMPLOYEE
         const section = document.createElement("section");
-        section.className = "card"
+        section.className = "card";
 
-        // ADD TO GRID CONTAINER
-        gridBox.appendChild(section);
+        // CREATE EACH EMPLOYEE'S INFOMATION TO GRID CONTAINER
         section.innerHTML = `
             <img class="avatar" src="${employee.picture.large}" alt="${employee.name.title} ${employee.name.last} ${employee.name.first}">
             <div class="text-wrapper">
-                <h4 class="name">${employee.name.first} ${employee.name.last}</h4>
-                <p class="email">${employee.email}</p>
-                <p class="city">${employee.location.city}</p>
+            <h4 class="name">${employee.name.first} ${employee.name.last}</h4>
+            <p class="email">${employee.email}</p>
+            <p class="city">${employee.location.city}</p>
             </div>
         `
-        return {... employee}
+        gridBox.appendChild(section);
+
+        // RETURN EACH EMPLOYEES OBJECTS TO ONE ARRAY
+        return { ... employee };
     })
-    modalDisplay(data)
+    // DISPLAY EMPLOYEE INFOMATION TO MODAL
+    displayCardsToModal(data);
 }
 
-function modalDisplay(employees) {
-    const cards = document.getElementsByClassName("card");
-    employees.forEach( (element, i) => {
-        // console.log(element)
-        const birthday = new Date(Date.parse(element.dob.date)).toLocaleDateString()
-        // console.log(i)
-        cards[i].addEventListener('click', (event) => {
-            console.log(event.target);
-            console.log(cards[i]);
-            const modal = document.createElement('div');
-            modal.className = "modal-card"
-            modal.innerHTML = `
-                <p class="close">&times;</p>
-                <img src="${element.picture.large}" >
-                <h3>${element.name.first} ${element.name.last}</h3>
-                <p>${element.email}</p>
-                <p>${element.location.city}</p>
-                <hr class="line">
-                <p>${element.cell}</p>
-                <p>${element.location.street.number} ${element.location.street.name} ${element.nat} ${element.location.postcode}</p>
-                <p>Birthday: ${birthday}</p>
-            `
-            modalDiv.className = 'modalOverlay';
-            modalDiv.appendChild(modal);
-            container.appendChild(modalDiv);
-        } )
+
+// CREATE FUNCTION FOR A MODAL INFOMATION
+function modalCard(i) {
+    console.log(data[i])
+    const birthday = new Date(Date.parse(data[i].dob.date)).toLocaleDateString()  
+
+    modalCardDiv.className = "modal-card";
+    modalCardDiv.innerHTML = `
+        <p class="close">&times;</p>
+
+            <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
+
+
+            <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
+
+        <div class ="info">
+            <img src="${data[i].picture.large}" >
+            <h3>${data[i].name.first} ${data[i].name.last}</h3>
+            <p>${data[i].email}</p>
+            <p>${data[i].location.city}</p>
+            <hr class="line">
+            <p>${data[i].cell}</p>
+            <p>${data[i].location.street.number} ${data[i].location.street.name} ${data[i].nat} ${data[i].location.postcode}</p>
+            <p>Birthday: ${birthday}</p>
+        </div>
+    `
+    modalDiv.style.display = "block"
+    modalDiv.className = 'modalOverlay';
+    modalDiv.appendChild(modalCardDiv);
+    container.appendChild(modalDiv);
+}
+
+
+// CREATE FUNCTION FOR DISPLAY EMPLOYEE INFOMATION TO MODAL
+function displayCardsToModal(data) {
+
+    // WHEN EACH EMPLOYEE CLICKED DISPLAY MODAL
+    const cards = gridBox.querySelectorAll(".card");
+    cards.forEach( (element, i) => {
+        element.addEventListener('click', () => {
+            modalCard(i)
+        });
     });
 }
 
 
-// DISPLAY ALL 12 EMPLOYEES TO THE WEBSITE
-fetcingData('https://randomuser.me/api/?results=12')
-.then( disPlayEmployees )
+// CLOSE MODAL DISPLAY EVENT LISTENER
+modalDiv.addEventListener('click', event => {
 
-const closeModal = document.querySelector('.close');
-        modalDiv.addEventListener('click', event => {
-            if(event.target.className === "close") {
-                modalDiv.style.display = "none";
-            }
-        })
+    // CLOSE THE MODAL WITH CLOSE BUTTON OR GRAY BACKGROUND 
+    if(event.target.className === "close" || event.target.className === "modalOverlay") {
+        modalDiv.style.display = "none";
+    }
+})
+
+modalCardDiv.addEventListener('click', e => {
+    let index = 0;
+    if(e.target.className === "back") {
+        if (index !== 0) {
+            console.log('hi')
+            modalCard(index--)
+        }
+    } else if(e.target.className === "forward") {
+        if (index !== 12){
+            modalCard(index++)
+        }
+    }
+})

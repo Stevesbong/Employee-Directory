@@ -370,7 +370,6 @@ html {
 body {
   font-family: "Merriweather", Arial, sans-serif;
   color: #222222;
-  min-height: 100vh;
   max-width: 1800px;
   display: flex;
   flex-direction: column;
@@ -381,11 +380,22 @@ h2 {
   font-size: 1.2em;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  width: 50%;
+  margin: 0 2.6em 0 auto;
+  align-items: flex-end;
+}
+
 #employee-main {
   display: grid;
   width: 85%;
   margin: 1.2em auto;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-auto-rows: minmax(180px, 1fr);
   grid-gap: 1.2em;
 }
@@ -410,10 +420,11 @@ h2 {
 .modalOverlay {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 1;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  display: hidden;
 }
 
 .modal-card {
@@ -421,7 +432,7 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 75%;
   background-color: #fff;
   text-align: center;
   border: 2px solid #d6d6d6;
@@ -442,6 +453,26 @@ h2 {
   border-radius: 50%;
 }
 
+.back,
+.forward {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.back {
+  left: 0;
+}
+
+.forward {
+  right: 0;
+}
+
+.info {
+  width: 80%;
+  margin: 0 auto;
+}
+
 hr.line {
   margin: 25px 0;
   border: 0;
@@ -457,24 +488,44 @@ hr.line {
     font-size: 1.1em;
   }
 }
+/* ============================================= */
+/*                grid-container                 */
+/* ============================================= */
+@media (min-width: 768px) {
+  #employee-main {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
 
-/* ============================================= */
-/*                   Header                      */
-/* ============================================= */
-/* ============================================= */
-/*                   About                       */
-/* ============================================= */
-/* ============================================= */
-/*                   Skills                       */
-/* ============================================= */
-/* ============================================= */
-/*                  Projects                     */
-/* ============================================= */
-/* ============================================= */
-/*                  Contact                      */
-/* ============================================= */
+  h2 {
+    margin-left: 3.5em;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .search {
+    width: 30%;
+    margin: auto;
+  }
+}
 /* ============================================= */
 /*                  Footer                       */
 /* ============================================= */
+@media (min-width: 1024px) {
+  #employee-main {
+    width: 90%;
+  }
+
+  .search {
+    margin-right: 4em;
+  }
+
+  .modal-card {
+    width: 30%;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */
