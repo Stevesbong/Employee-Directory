@@ -390,6 +390,7 @@ h2 {
   width: 50%;
   margin: 0 2.6em 0 auto;
   align-items: flex-end;
+  padding: 0.4em 0.2em;
 }
 
 #employee-main {
@@ -483,7 +484,7 @@ hr.line {
 /* ============================================= */
 /* Components Imports */
 /* ============================================= */
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   body {
     font-size: 1.1em;
   }
@@ -514,7 +515,7 @@ hr.line {
 /* ============================================= */
 /*                  Footer                       */
 /* ============================================= */
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   #employee-main {
     width: 90%;
   }

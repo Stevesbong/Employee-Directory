@@ -52,6 +52,16 @@ function disPlayEmployees(json) {
     })
     // DISPLAY EMPLOYEE INFOMATION TO MODAL
     displayCardsToModal(data);
+    // SEARCH EMPLOYEES BY NAME
+function searchEmployee() {
+    const names = gridBox.querySelectorAll('.card .name');
+    const cards = gridBox.querySelectorAll('.card');
+    console.log(cards);
+    cards.forEach(e => {
+        console.log(e)
+    })
+}
+searchEmployee();
 }
 
 
@@ -123,3 +133,4 @@ function nextOrBackModal(i) {
         }
     })
 }
+
