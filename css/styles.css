@@ -494,7 +494,7 @@ hr.line {
 /* ============================================= */
 @media (min-width: 768px) {
   #employee-main {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(3, minmax(400px, 1fr));
   }
 
   h2 {

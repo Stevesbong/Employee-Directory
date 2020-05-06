@@ -3,7 +3,10 @@ const gridBox = document.getElementById("employee-main");
 const container = document.getElementById("container");
 
 // GENERATE RANDOM EMPLOYEES
-const url = 'https://randomuser.me/api/?results=12'
+const url = 'https://randomuser.me/api/?results=12';
+
+// SEARCH INPUT
+const searchInput = document.getElementById('search');
 
 // Modal Div
 const modalDiv = document.createElement('div');
@@ -52,16 +55,9 @@ function disPlayEmployees(json) {
     })
     // DISPLAY EMPLOYEE INFOMATION TO MODAL
     displayCardsToModal(data);
-    // SEARCH EMPLOYEES BY NAME
-function searchEmployee() {
-    const names = gridBox.querySelectorAll('.card .name');
-    const cards = gridBox.querySelectorAll('.card');
-    console.log(cards);
-    cards.forEach(e => {
-        console.log(e)
-    })
-}
-searchEmployee();
+
+    // SEARCH BY NAME
+    searchEmployee();
 }
 
 
@@ -134,3 +130,31 @@ function nextOrBackModal(i) {
     })
 }
 
+// SEARCH EMPLOYEES BY NAME
+function searchEmployee() {
+    searchInput.addEventListener("input", e=> {
+
+        // LOWERCASE THE INPUT VALUE
+        let inputValue = e.target.value.toLowerCase();
+
+        // GET ALL THE EMPLOYEE INFOMATION CARDS
+        const cards = gridBox.querySelectorAll('.card');
+
+        // GET ALL THE EMPLOYEE NAME IN THE CARDS
+        const names = gridBox.querySelectorAll('.card .name');
+
+        // LOOP THROUGH NAMES THAT INCLUDES SEARCH INPUT VALUE
+        names.forEach(( name, i ) => {
+
+            // CAPITALIZE NAME TO LOWER CASE
+            const nameLowerCase = name.textContent.toLowerCase();
+
+            // IF NAME AND INPUT VALUE IS NOT MATCHED DISPLAY NONE
+            if(!nameLowerCase.includes(inputValue)) {
+                cards[i].style.display = "none"
+            } else { // ELSE DISPLAY ON THE APP
+                cards[i].style.display = "grid"
+            }
+        })
+    })
+}

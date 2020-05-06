@@ -10,7 +10,7 @@
 
 @include mq(med) {
     #employee-main {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat(3, minmax(400px, 1fr));
     }
     h2 {
         margin-left: 3.5em;
