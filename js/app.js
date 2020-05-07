@@ -2,6 +2,7 @@
 const gridBox = document.getElementById("employee-main");
 const container = document.getElementById("container");
 
+let employeeData = [];
 // GENERATE RANDOM EMPLOYEES
 const url = 'https://randomuser.me/api/?results=12';
 
@@ -33,7 +34,7 @@ fetcingData('https://randomuser.me/api/?results=12')
 function disPlayEmployees(json) {
 
     // LOOP THROUGH EACH EMPLOYEE FROM JSON DATA
-    const data = json.results.map( employee => {
+    employeeData = json.results.map( employee => {
 
         // CREATE EACH SECTION FOR EACH EMPLOYEE
         const section = document.createElement("section");
@@ -54,7 +55,7 @@ function disPlayEmployees(json) {
         return { ... employee };
     })
     // DISPLAY EMPLOYEE INFOMATION TO MODAL
-    displayCardsToModal(data);
+    displayCardsToModal(employeeData);
 
     // SEARCH BY NAME
     searchEmployee();
@@ -62,33 +63,35 @@ function disPlayEmployees(json) {
 
 
 // CREATE FUNCTION FOR A MODAL INFOMATION
-function modalCard(employees) {
-    console.log(employees)
-    const birthday = new Date(Date.parse(employees.dob.date)).toLocaleDateString()  
-
-    modalCardDiv.className = "modal-card";
-    modalCardDiv.innerHTML = `
-        <p class="close">&times;</p>
-        <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
-        <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
-        <div class ="info">
-            <img class="avatar" src="${employees.picture.large}" >
-            <h3>${employees.name.first} ${employees.name.last}</h3>
-            <p>${employees.email}</p>
-            <p>${employees.location.city}</p>
-            <hr class="line">
-            <p>${employees.cell}</p>
-            <p>${employees.location.street.number} 
-                ${employees.location.street.name} 
-                ${employees.nat} 
-                ${employees.location.postcode}</p>
-            <p>Birthday: ${birthday}</p>
-        </div>
-    `
-    modalDiv.style.display = "block"
-    modalDiv.className = 'modalOverlay';
-    modalDiv.appendChild(modalCardDiv);
-    container.appendChild(modalDiv);
+function modalCard(index) {
+    if(index > -1 && index < 13) {
+        console.log(employeeData[index])
+        const birthday = new Date(Date.parse(employeeData[index].dob.date)).toLocaleDateString()  
+    
+        modalCardDiv.className = "modal-card";
+        modalCardDiv.innerHTML = `
+            <p class="close">&times;</p>
+            <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
+            <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
+            <div class ="info">
+                <img class="avatar" src="${employeeData[index].picture.large}" >
+                <h3>${employeeData[index].name.first} ${employeeData[index].name.last}</h3>
+                <p>${employeeData[index].email}</p>
+                <p>${employeeData[index].location.city}</p>
+                <hr class="line">
+                <p>${employeeData[index].cell}</p>
+                <p>${employeeData[index].location.street.number} 
+                    ${employeeData[index].location.street.name} 
+                    ${employeeData[index].nat} 
+                    ${employeeData[index].location.postcode}</p>
+                <p>Birthday: ${birthday}</p>
+            </div>
+        `
+        modalDiv.style.display = "block"
+        modalDiv.className = 'modalOverlay';
+        modalDiv.appendChild(modalCardDiv);
+        container.appendChild(modalDiv);
+    }
 }
 
 
@@ -99,7 +102,8 @@ function displayCardsToModal(data) {
     const cards = gridBox.querySelectorAll(".card");
     cards.forEach( (element, i) => {
         element.addEventListener('click', () => {
-            modalCard(data[i])
+            modalCard(i)
+            nextOrBackModal(i)
         });
     });
 }
@@ -122,10 +126,14 @@ function nextOrBackModal(i) {
 
         if(e.target.className === "back") {
             console.log('back clicked')
-            modalCard(data)
+            if(i > 0) {
+                modalCard(i--)
+            }
         } else if(e.target.className === "forward") {
             console.log('forward clicked')
-            modalCard(data)
+            if(i< 12) {
+                modalCard(i++)
+            }
         }
     })
 }
