@@ -22,4 +22,4 @@ more infomation available when you clicked
 #### To Do List
 1. <del>Employees can be filtered by name.</del>
 
-2. Functionality has been added to switch back and forth between employees when the detail modal window is open.
+2. <del>Functionality has been added to switch back and forth between employees when the detail modal window is open.</del>

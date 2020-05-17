@@ -12,7 +12,7 @@ const url = 'https://randomuser.me/api/?results=12';
 const searchInput = document.getElementById('search');
 
 // Modal Div
-const modalDiv = document.createElement('div');
+const modalOverlay = document.createElement('div');
 const modalCardDiv = document.createElement('div');
 
 // FETCHING DATA FROM GENERATE RANDOM EMPLOYEES WEBSITE
@@ -89,56 +89,59 @@ function modalCard(index) {
                 <p>Birthday: ${birthday}</p>
             </div>
         `
-        modalDiv.style.display = "block"
-        modalDiv.className = 'modalOverlay';
-        modalDiv.appendChild(modalCardDiv);
-        container.appendChild(modalDiv);
+        modalOverlay.style.display = "block"
+        modalOverlay.className = 'modalOverlay';
+        modalOverlay.appendChild(modalCardDiv);
+        container.appendChild(modalOverlay);
     }
 }
 
 
 // CREATE FUNCTION FOR DISPLAY EMPLOYEE INFOMATION TO MODAL
 function displayCardsToModal(data) {
-
+    
     // WHEN EACH EMPLOYEE CLICKED DISPLAY MODAL
     const cards = gridBox.querySelectorAll(".card");
     cards.forEach( (element, i) => {
         element.addEventListener('click', () => {
             modalCard(i);
-            nextOrBackModal(i);
+            nextBackModalCard(i);
         });
     });
 }
 
 
 // CLOSE MODAL DISPLAY EVENT LISTENER
-modalDiv.addEventListener('click', event => {
+modalOverlay.addEventListener('click', event => {
 
     // CLOSE THE MODAL WITH CLOSE BUTTON OR GRAY BACKGROUND 
     if(event.target.className === "close" || event.target.className === "modalOverlay") {
-        modalDiv.style.display = "none";
+        modalOverlay.style.display = "none";
     }
 })
 
 
-// Working on Exceeds Expectations
-function nextOrBackModal(i) {
-    modalCardDiv.addEventListener('click', (e) => {
-        console.log(e.target)
+// DISPLAY FORWARD OR BACKWARD EMPLOYEE
+function nextBackModalCard(i) {
 
+    modalCardDiv.addEventListener('click', (e) => {
+        
+        // TARGET BACK ARROW TO SEE PREVIOUS EMPLOYEE
         if(e.target.className === "back") {
-            console.log('back clicked')
             if(i > 0) {
-                modalCard(i--)
+                i--;
+                modalCard(i);
             }
+        // TARGET FORWARD ARROW TO SEE NEXT EMPLOYEE
         } else if(e.target.className === "forward") {
-            console.log('forward clicked')
-            if(i< 12) {
-                modalCard(i++)
+            if(i < 11) {
+                i++;
+                modalCard(i);
             }
         }
     })
 }
+
 
 // SEARCH EMPLOYEES BY NAME
 function searchEmployee() {
