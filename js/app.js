@@ -2,7 +2,9 @@
 const gridBox = document.getElementById("employee-main");
 const container = document.getElementById("container");
 
+// SAVE EMPLOYEES DATA TO ARRAY
 let employeeData = [];
+
 // GENERATE RANDOM EMPLOYEES
 const url = 'https://randomuser.me/api/?results=12';
 
@@ -102,8 +104,8 @@ function displayCardsToModal(data) {
     const cards = gridBox.querySelectorAll(".card");
     cards.forEach( (element, i) => {
         element.addEventListener('click', () => {
-            modalCard(i)
-            nextOrBackModal(i)
+            modalCard(i);
+            nextOrBackModal(i);
         });
     });
 }
