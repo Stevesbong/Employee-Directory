@@ -88,6 +88,9 @@ h2 {
     border: 2px solid $color-gray-lighter;
     border-radius: 10px;
     color: $color-gray;
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-auto-rows: minmax(20px 1fr);
 
     & h3 {
         color: $color-black;
@@ -101,21 +104,32 @@ h2 {
 
 .close {
     cursor: pointer;
+    grid-column: 1 / span 3;
+}
+
+.info {
+    grid-column: 2 / 3;
 }
 
 .back,
 .forward {
-    position: absolute;
-    top: 50%;
     cursor: pointer;
+    align-self: center;
 }
 
 .back {
-    left: 0;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+
+    // test
+    // &:hover {
+    //     background-color: red;
+    // }
 }
 
 .forward {
-    right: 0;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3
 }
 
 .info {

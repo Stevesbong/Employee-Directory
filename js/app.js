@@ -57,7 +57,7 @@ function disPlayEmployees(json) {
         return { ... employee };
     })
     // DISPLAY EMPLOYEE INFOMATION TO MODAL
-    displayCardsToModal(employeeData);
+    displayCardsToModal();
 
     // SEARCH BY NAME
     searchEmployee();
@@ -67,7 +67,6 @@ function disPlayEmployees(json) {
 // CREATE FUNCTION FOR A MODAL INFOMATION
 function modalCard(index) {
     if(index > -1 && index < 13) {
-        console.log(employeeData[index])
         const birthday = new Date(Date.parse(employeeData[index].dob.date)).toLocaleDateString()  
     
         modalCardDiv.className = "modal-card";
@@ -98,7 +97,7 @@ function modalCard(index) {
 
 
 // CREATE FUNCTION FOR DISPLAY EMPLOYEE INFOMATION TO MODAL
-function displayCardsToModal(data) {
+function displayCardsToModal() {
     
     // WHEN EACH EMPLOYEE CLICKED DISPLAY MODAL
     const cards = gridBox.querySelectorAll(".card");
