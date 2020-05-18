@@ -117,16 +117,16 @@ h2 {
     align-items: center;
     cursor: pointer;
     z-index: 100;
+    transition: all .8s;
+
+    &:hover {
+        background-color: $color-gray-lighter;
+    }
 }
 
 .back {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
-
-    // test
-    // &:hover {
-    //     background-color: red;
-    // }
 }
 
 .forward {

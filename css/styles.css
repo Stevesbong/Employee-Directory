@@ -468,6 +468,11 @@ h2 {
   align-items: center;
   cursor: pointer;
   z-index: 100;
+  transition: all 0.8s;
+}
+.back:hover,
+.forward:hover {
+  background-color: #d6d6d6;
 }
 
 .back {
