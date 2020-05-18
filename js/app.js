@@ -72,8 +72,12 @@ function modalCard(index) {
         modalCardDiv.className = "modal-card";
         modalCardDiv.innerHTML = `
             <p class="close">&times;</p>
-            <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
-            <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
+            <div class="back">
+                <img class="back" src="img/icons8-back-50.png" alt="back-arrow"/>
+            </div>
+            <div class="forward">
+                <img class="forward" src="img/icons8-forward-50.png" alt="forward-arrow"/>
+            </div>
             <div class ="info">
                 <img class="avatar" src="${employeeData[index].picture.large}" >
                 <h3>${employeeData[index].name.first} ${employeeData[index].name.last}</h3>
@@ -124,9 +128,10 @@ modalOverlay.addEventListener('click', event => {
 function nextBackModalCard(i) {
 
     modalCardDiv.addEventListener('click', (e) => {
-        
+        // console.log(e.target)
         // TARGET BACK ARROW TO SEE PREVIOUS EMPLOYEE
         if(e.target.className === "back") {
+            console.log('clicked')
             if(i > 0) {
                 i--;
                 modalCard(i);

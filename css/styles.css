@@ -464,8 +464,10 @@ h2 {
 
 .back,
 .forward {
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  align-self: center;
+  z-index: 100;
 }
 
 .back {
@@ -476,11 +478,6 @@ h2 {
 .forward {
   grid-column: 3/4;
   grid-row: 2/3;
-}
-
-.info {
-  width: 80%;
-  margin: 0 auto;
 }
 
 hr.line {
